@@ -224,6 +224,20 @@ pub enum Advice {
     #[cfg(target_os = "linux")]
     PopulateWrite = libc::MADV_POPULATE_WRITE,
 
+    #[cfg(target_os = "linux")]
+    /// **MADV_COLLAPSE** - Linux only (since Linux 6.1)
+    ///
+    /// Perform a best-effort synchronous collapse of the native
+    /// pages mapped by the memory range into Transparent Huge
+    /// Pages (THPs).  MADV_COLLAPSE operates on the current state
+    /// of memory of the calling process and makes no persistent
+    /// changes or guarantees on how pages will be mapped,
+    /// constructed, or faulted in the future.
+    ///
+    /// See https://www.man7.org/linux/man-pages/man2/madvise.2.html
+    /// for more details.
+    Collapse = libc::MADV_COLLAPSE,
+
     /// **MADV_ZERO_WIRED_PAGES** - Darwin only
     ///
     /// Indicates that the application would like the wired pages in this address range to be
